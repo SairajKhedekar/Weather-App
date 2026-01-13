@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Weather App</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="bg" id="bg"></div>
+  <main class="app">
+    <h1>Weather App</h1>
+    <div class="controls">
+      <input id="locationInput" type="text" placeholder="Enter city or city,country (e.g. Mumbai,IN)" />
+      <button id="searchBtn">Get Weather</button>
+    </div>
+    <div id="error" class="error" aria-live="polite"></div>
+
+    <section id="weatherCard" class="card hidden" aria-live="polite">
+      <div class="left">
+        <img id="weatherIcon" alt="weather icon" />
+      </div>
+      <div class="right">
+        <div id="place" class="place"></div>
+        <div id="temp" class="temp"></div>
+        <div id="desc" class="desc"></div>
+      </div>
+    </section>
+
+    <div id="weatherParams" class="weather-params hidden">
+      <div class="param-card">
+        <div class="param-label">Precipitation</div>
+        <div class="param-value"><span id="precipitation">--</span><span class="param-unit">mm</span></div>
+      </div>
+      <div class="param-card">
+        <div class="param-label">Humidity</div>
+        <div class="param-value"><span id="humidity">--</span><span class="param-unit">%</span></div>
+      </div>
+      <div class="param-card">
+        <div class="param-label">Wind</div>
+        <div class="param-value"><span id="wind">--</span><span class="param-unit">m/s</span></div>
+      </div>
+      <div class="param-card">
+        <div class="param-label">Air Quality</div>
+        <div class="param-value"><span id="airQuality">--</span><span class="param-unit" id="aqUnit"></span></div>
+      </div>
+      <div class="param-card">
+        <div class="param-label">Cloud Cover</div>
+        <div class="param-value"><span id="cloudCover">--</span><span class="param-unit">%</span></div>
+      </div>
+      <div class="param-card">
+        <div class="param-label">Visibility</div>
+        <div class="param-value"><span id="visibility">--</span><span class="param-unit">km</span></div>
+      </div>
+      <div class="param-card hourly-temp">
+        <div class="param-label">24 Hour Temperature</div>
+        <div id="hourlyChart" class="hourly-chart"></div>
+      </div>
+    </div>
+  </main>
+  <script src="js/script.js"></script>
+</body>
+</html>

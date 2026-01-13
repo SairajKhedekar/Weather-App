@@ -1,0 +1,122 @@
+:root{
+  /* Calm sky palette */
+  --bg:#0b1020;
+  --card:#f9fdffcc;
+  --accent:#00bcd4;
+  --muted:#7aa4c4;
+  --text-dark:#062033;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Arial}
+body{
+  background:
+    radial-gradient(circle at 10% 20%, rgba(255,255,255,0.16), transparent 60%),
+    radial-gradient(circle at 90% 10%, rgba(255,255,255,0.10), transparent 55%),
+    linear-gradient(180deg,#1b3b73 0%, #3b82f6 35%, #22c1c3 70%, #a5f3fc 100%);
+  color:var(--text-dark);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  animation:backgroundDrift 18s ease-in-out infinite alternate;
+}
+@keyframes backgroundDrift{
+  0%{
+    background-position:0 0, 100% 0, 0 0;
+  }
+  50%{
+    background-position:10px 20px, 95% 15px, 0 20%;
+  }
+  100%{
+    background-position:0 40px, 100% 30px, 0 40%;
+  }
+}
+.bg{position:fixed;inset:0;z-index:0;overflow:hidden}
+.app{position:relative;z-index:2;width:min(900px,94%);padding:28px;border-radius:16px;background:var(--card);box-shadow:0 8px 30px rgba(0,0,0,0.2);backdrop-filter:blur(10px);animation:fadeIn 0.6s ease-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+h1{margin:0 0 14px 0;font-size:1.4rem;color:var(--text-dark)}
+.controls{display:flex;gap:8px}
+input{flex:1;padding:10px 12px;border-radius:8px;border:1px solid rgba(0,0,0,0.1);background:rgba(255,255,255,0.9);color:var(--text-dark);transition:all 0.3s ease}
+input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,188,212,0.2);transform:scale(1.02)}
+button{padding:10px 12px;border-radius:8px;border:0;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;transition:all 0.3s ease}
+button:hover{background:#00acc1;transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,188,212,0.4)}
+button:disabled{opacity:0.6;cursor:not-allowed;transform:none}
+.error{color:#e74c3c;margin-top:10px;min-height:1.2em;animation:shake 0.5s ease}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+.card{display:flex;gap:12px;align-items:center;margin-top:18px;padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));animation:slideIn 0.5s ease-out}
+@keyframes slideIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.hidden{display:none}
+.left img{width:96px;height:96px;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.place{font-weight:700;font-size:1.1rem;color:var(--text-dark)}
+.temp{font-size:2rem;font-weight:800;margin-top:6px;color:var(--text-dark);animation:scaleIn 0.5s ease-out}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.8)}to{opacity:1;transform:scale(1)}}
+.desc{color:var(--muted);text-transform:capitalize;margin-top:6px}
+.hint{margin-top:12px;color:var(--muted);font-size:0.9rem}
+
+/* Weather Parameters Grid */
+.weather-params{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:20px;animation:fadeInUp 0.6s ease-out 0.2s both}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.param-card{background:rgba(255,255,255,0.9);padding:16px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,0.1);transition:all 0.3s ease;animation:cardAppear 0.5s ease-out both}
+.param-card:nth-child(1){animation-delay:0.1s}
+.param-card:nth-child(2){animation-delay:0.2s}
+.param-card:nth-child(3){animation-delay:0.3s}
+.param-card:nth-child(4){animation-delay:0.4s}
+.param-card:nth-child(5){animation-delay:0.5s}
+.param-card:nth-child(6){animation-delay:0.6s}
+.param-card:nth-child(7){animation-delay:0.7s}
+.param-card:hover{transform:translateY(-4px);box-shadow:0 4px 16px rgba(0,0,0,0.15)}
+@keyframes cardAppear{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+.param-label{font-size:0.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.param-value{font-size:1.3rem;font-weight:700;color:var(--text-dark);display:flex;align-items:center;gap:8px}
+.param-unit{font-size:0.9rem;color:var(--muted);font-weight:400}
+
+/* 24 Hour Temperature Chart */
+.hourly-temp{grid-column:1/-1;margin-top:10px}
+.hourly-chart{display:flex;gap:8px;align-items:flex-end;justify-content:space-between;height:120px;padding:12px;background:rgba(255,255,255,0.95);border-radius:10px;overflow-x:auto}
+.hour-item{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:50px;animation:barGrow 0.6s ease-out}
+@keyframes barGrow{from{opacity:0;transform:scaleY(0)}to{opacity:1;transform:scaleY(1)}}
+.hour-bar{width:100%;background:linear-gradient(180deg,var(--accent),#4dd0e1);border-radius:4px 4px 0 0;transition:all 0.3s ease;min-height:20px}
+.hour-bar:hover{opacity:0.8;transform:scaleY(1.05)}
+.hour-time{font-size:0.75rem;color:var(--muted);font-weight:500}
+.hour-temp{font-size:0.85rem;color:var(--text-dark);font-weight:600;margin-top:4px}
+
+/* Background animation containers */
+.bg .layer{position:absolute;inset:0}
+
+/* Clear / Sunny */
+.clear .sun{position:absolute;right:6%;top:8%;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle at 30% 30%, #fffef0,#fff9c4 30%, #ffeb3b 60%, rgba(255,235,59,0.3) 70%);box-shadow:0 0 80px rgba(255,235,59,0.5);animation:sunPulse 4s ease-in-out infinite}
+@keyframes sunPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:0.9}}
+
+/* Clouds */
+.clouds .cloud{position:absolute;background:rgba(255,255,255,0.6);border-radius:50px;filter:blur(12px);animation:cloudFloat 8s ease-in-out infinite}
+.clouds .cloud.c1{width:260px;height:90px;left:5%;top:12%;animation-delay:0s}
+.clouds .cloud.c2{width:200px;height:70px;right:8%;top:6%;animation-delay:2s}
+@keyframes cloudFloat{0%,100%{transform:translateX(0) translateY(0)}50%{transform:translateX(20px) translateY(-10px)}}
+
+/* Rain */
+.rain .drop{position:absolute;left:50%;top:-10%;width:2px;height:14px;background:linear-gradient(#87ceeb,#4dd0e1);opacity:0.7;animation:fall 1s linear infinite}
+.rain .drop.d1{left:20%;animation-delay:0s}
+.rain .drop.d2{left:35%;animation-delay:0.2s}
+.rain .drop.d3{left:50%;animation-delay:0.4s}
+.rain .drop.d4{left:65%;animation-delay:0.6s}
+.rain .drop.d5{left:80%;animation-delay:0.8s}
+
+@keyframes fall{0%{transform:translateY(-20vh)}100%{transform:translateY(120vh);opacity:0}}
+
+/* Snow */
+.snow .flake{position:absolute;top:-5%;width:8px;height:8px;background:#fff;border-radius:50%;opacity:0.9;animation:snow 6s linear infinite}
+.snow .flake.f1{left:15%;animation-delay:0s}
+.snow .flake.f2{left:35%;animation-delay:1s}
+.snow .flake.f3{left:55%;animation-delay:2s}
+.snow .flake.f4{left:75%;animation-delay:3s}
+@keyframes snow{0%{transform:translateY(-10vh)}100%{transform:translateY(120vh) rotate(180deg)}}
+
+/* Thunder */
+.thunderstorm .flash{position:absolute;inset:0;background:transparent;animation:flash 3s infinite}
+@keyframes flash{0%{background:transparent}10%{background:rgba(255,255,255,0.14)}11%{background:transparent}50%{background:transparent}52%{background:rgba(255,255,255,0.08)}53%{background:transparent}}
+
+/* Fog / Mist */
+.fog::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.03));backdrop-filter: blur(3px);}
+
+/* small responsive tweaks */
+@media (max-width:420px){.left img{width:72px;height:72px}.app{padding:18px}}
