@@ -1,5 +1,5 @@
 // Replace the placeholder with your OpenWeatherMap API key before publishing
-const API_KEY = 'YOUR_OPENWEATHERMAP_API_KEY_HERE';
+const API_KEY = '96c9b825c21b1e1bbb98f0cdc706d9b7';
 
 const el = id => document.getElementById(id);
 const bg = el('bg');
